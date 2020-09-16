@@ -13,7 +13,6 @@ router.post('/', (req, res, next) => {
 
    async function demo (agent) {
       const result = req.body.queryResult;
-      console.log(result);
       const response = await axios.get('weather', {params: {
          'q': result.parameters['geo-city'],
          'APPID': process.env.API_KEY
