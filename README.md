@@ -21,7 +21,7 @@ Weather Forecast ChatBot
 * For Front End: Add al the relevant environment values in the `.env.development` file of root directory. 
 * For BackEnd: In the API directory copy `.env.example` and rename it to `.env` and keep on same level after replacing with relevant values as per your environment.
 * Add all necessary values to .env varaiables as per your configurations.
-* After Adding your conifurations execute `npm start` on root to start the frontEnd app and excute same `npm start` command in the api folder to start backend app.
+* After adding your conifgurations execute `npm start` on root to start the frontEnd app and excute same `npm start` command in the api folder to start backend app.
 
 ## About The Implementation
 
