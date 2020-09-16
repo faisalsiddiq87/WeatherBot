@@ -8,9 +8,9 @@ dotenv.config();
 
 exports.chat_create = function (req, res, next) {
    let chat = new Chat({
-           session_id: req.body.session_id,
-           query: req.body.query,
-           reply: req.body.reply,
+      session_id: req.body.session_id,
+      query: req.body.query,
+      reply: req.body.reply,
     });
 
    chat.save(function (err) {
@@ -30,10 +30,21 @@ exports.chat_details = function (req, res, next) {
 };
 
 exports.chat_all = function (req, res, next) {
-    Chat.find({}, function (err, chats) {
-        if (err) return next(err);
+    var page = 1;  
+    const PAGE_SIZE = parseInt(process.env.PAGE_LIMIT);
+    if (req.query.page != "undefined") {
+      page = req.query.page;
+    }
+    
+    var aggregateQuery = Chat.aggregate();
+
+    Chat.aggregatePaginate(aggregateQuery, { page: page, limit: PAGE_SIZE,  sort:{_id: "descending"} }, function(err, chats) {
+      if (err) {
+        return next(err);
+      } else {
         res.send(chats);
-    })
+      }
+    });
 };
 
 exports.chat_delete = function (req, res, next) {

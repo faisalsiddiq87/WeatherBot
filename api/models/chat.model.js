@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+var aggregatePaginate = require("mongoose-aggregate-paginate-v2");
+
 const Schema = mongoose.Schema;
 
 let ChatSchema = new Schema({
@@ -6,5 +8,7 @@ let ChatSchema = new Schema({
     query: {type: String, required: true},
     reply: {type: String, required: true},
 });
+
+ChatSchema.plugin(aggregatePaginate);
 
 module.exports = mongoose.model('Chat', ChatSchema);
