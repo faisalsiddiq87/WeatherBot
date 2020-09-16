@@ -2,6 +2,8 @@
 
 Weather ForeCast ChatBot
 
+![chat-bot](https://github.com/faisalsiddiq87/WeatherBot/blob/master/public/screenshots/bot.gif)
+
 ### Prerequisites
 
 * Git, Node must be installed on your machine.
