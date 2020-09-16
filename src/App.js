@@ -16,7 +16,7 @@ class App extends React.Component
   }
 
   async handleNewMessage(newMessage) {
-    await fetch("http://localhost:9000/chats?q=" + newMessage).then(
+    await fetch(`${process.env.REACT_APP_API_URL}chats?q=${newMessage}`).then(
       res => res.text()
     ).then(
       res => addResponseMessage(res)
@@ -27,7 +27,6 @@ class App extends React.Component
     return (
       <div className="App">
         <header className="App-header">
-          <div>View Logs</div>
           <img src={logo} className="App-logo" alt="logo" />
         </header>
         <Widget handleNewUserMessage={this.handleNewMessage} profileAvatar={logo}

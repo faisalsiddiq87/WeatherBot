@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
-import App from './App';
+import Routes from './Routes';
 import * as serviceWorker from './serviceWorker';
 
+const routing = (
+  <Routes />
+);
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  routing,
   document.getElementById('root')
 );
 
