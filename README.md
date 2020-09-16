@@ -7,7 +7,7 @@ Weather Forecast ChatBot
 ### Prerequisites
 
 * Git, Node must be installed on your machine.
-* Add a project on google `dialogflow` platform.
+* Add a project on google `dialogflow` platform and get the project id.
 * Signup on `openweathermap.org` to get your API Key.
 * Create a mongo database either on your machine or host remotely on any cloud platform.
 * Get your Google service account key from https://cloud.google.com/docs/authentication/getting-started and keep it under `api/bundle` folder with name as `service-account.json`.
