@@ -12,7 +12,6 @@ class Chats extends Component {
    
    handlePageChange(pageNumber) {
       this.setState({activePage: pageNumber}, () => {
-         console.log(this.state.total);
          this.fetchChat();
      });
     }
@@ -32,7 +31,7 @@ class Chats extends Component {
    render() {
       return (
          <div>
-            <div><h2>Chat History</h2>
+            <div>
                <Table striped bordered hover>
                   <thead>
                      <tr>
@@ -43,23 +42,25 @@ class Chats extends Component {
                      </tr>
                   </thead>
                   <tbody>
-                     {this.state.list.map((item, idx) => (
+                     { this.state.list.length ? this.state.list.map((item, idx) => (
                         <tr key={item._id}>
                            <td>{idx+1}</td>
                            <td>{item.session_id}</td>
                            <td>{item.query}</td>
                            <td>{item.reply}</td>
-                        </tr>))}
+                        </tr>)) : <tr><td colSpan="4" style={{textAlign: "center"}}>No Chat History Found</td></tr> }
                   </tbody>
                </Table>
+
+               {this.state.list.length ? <Pagination activePage={this.state.activePage}
+                           itemsCountPerPage={parseInt(process.env.REACT_APP_PAGE_LIMIT)}
+                           totalItemsCount={this.state.total}
+                           pageRangeDisplayed={5}
+                           itemClass="page-item"
+                           linkClass="page-link"
+                           onChange={this.handlePageChange.bind(this)}/> : null}
             </div>
-            <Pagination activePage={this.state.activePage}
-            itemsCountPerPage={parseInt(process.env.REACT_APP_PAGE_LIMIT)}
-            totalItemsCount={this.state.total}
-            pageRangeDisplayed={5}
-            itemClass="page-item"
-            linkClass="page-link"
-            onChange={this.handlePageChange.bind(this)}/>
+           
          </div>
       );
    }

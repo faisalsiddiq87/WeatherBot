@@ -18,7 +18,7 @@ exports.chat_create = function (req, res, next) {
            return next(err);
        }
 
-       res.send('Chat Created successfully')
+       res.status(200).send('Chat Created successfully')
    });
 };
 
@@ -42,7 +42,7 @@ exports.chat_all = function (req, res, next) {
       if (err) {
         return next(err);
       } else {
-        res.send(chats);
+        res.status(200).send(chats);
       }
     });
 };
@@ -76,19 +76,16 @@ exports.chat_bot = function (req, res, next) {
       
         const responses = await sessionClient.detectIntent(request);
         const result = responses[0].queryResult;
-        console.log(`  Query: ${result.queryText}`);
-        console.log(`  Responsedd: ${result.fulfillmentText}`);
-  
-        if (result.intent) {
-          console.log(`  Intent: ${result.intent.displayName}`);
-        } else {
-          console.log(` No intent matched.`);
-        }
+        let replyToQuery = "No matching location found";
+
+        if (result.fulfillmentText) {
+          replyToQuery = result.fulfillmentText;
+        } 
 
         let chat = new Chat({
             session_id: sessionId,
             query: req.query.q,
-            reply: result.fulfillmentText,
+            reply: replyToQuery,
         });
     
         chat.save(function (err) {
@@ -97,11 +94,11 @@ exports.chat_bot = function (req, res, next) {
             }
         });
   
-        return result.fulfillmentText;
+        return replyToQuery;
       }
   
       (async function main() {
         const returnedData = await runSample();
-        res.send(returnedData)
+        res.status(200).send(returnedData);
       })();
 };

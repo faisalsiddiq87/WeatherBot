@@ -6,7 +6,8 @@ var func = {
     return moment(date, format).format('LL');
    },   
    convertTempratureToCelsius: function(value){
-      return value-273.15;
+      var value = value-273.15;
+      return value.toFixed(2);
    }
 };
 
